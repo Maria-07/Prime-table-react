@@ -11,6 +11,7 @@ const BasicTable = () => {
     { field: "name", header: "Name" },
     { field: "category", header: "Category" },
     { field: "quantity", header: "Quantity" },
+    { field: "price", header: "Price" },
   ];
 
   const dynamicColumns = columns.map((col, i) => {
@@ -30,12 +31,16 @@ const BasicTable = () => {
     <div>
       <h1>Hi ! This is basic table</h1>
 
-      <div className=" bg-red-500 text-green-500">
-        <DataTable value={products} responsiveLayout="scroll">
-          <Column className="" field="code" header="Code"></Column>
-          <Column field="name" header="Name"></Column>
-          <Column field="category" header="Category"></Column>
-          <Column field="quantity" header="Quantity"></Column>
+      <div className="my-10 p-10">
+        <DataTable
+          size="small"
+          style={{ width: "70vw", margin: "auto" }}
+          showGridlines
+          value={products}
+          sortable
+          responsiveLayout="scroll"
+        >
+          {dynamicColumns}
         </DataTable>
       </div>
     </div>
