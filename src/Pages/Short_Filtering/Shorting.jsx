@@ -14,6 +14,21 @@ const Shorting = () => {
       });
   }, []);
 
+  //   Dynamicaly column Header
+  const columns = [
+    { field: "code", header: "Code" },
+    { field: "name", header: "Name" },
+    { field: "category", header: "Category" },
+    { field: "quantity", header: "Quantity" },
+    { field: "price", header: "Price" },
+  ];
+
+  const dynamicColumns = columns.map((col, i) => {
+    return (
+      <Column key={col.field} field={col.field} header={col.header} sortable />
+    );
+  });
+
   const formatCurrency = (value) => {
     return value.toLocaleString("en-US", {
       style: "currency",
@@ -36,34 +51,8 @@ const Shorting = () => {
           size="small"
           style={{ width: "70vw", margin: "auto", textAlign: "center" }}
           showGridlines
-          headerStyle={{ textAlign: "center", color: "red", width: "5rem" }}
         >
-          <Column
-            headerStyle={{
-              textAlign: "center",
-              color: "red",
-              width: "5rem",
-              backgroundColor: "teal",
-            }}
-            field="code"
-            header="Code"
-            sortable
-          ></Column>
-          <Column field="name" header="Name" sortable></Column>
-          <Column field="category" header="Category" sortable></Column>
-          <Column
-            headerStyle={{ textAlign: "center", color: "red", width: "5rem" }}
-            field="quantity"
-            header="Quantity"
-            sortable
-          ></Column>
-          <Column
-            field="price"
-            header="Price"
-            // if the currency need to format
-            body={priceBodyTemplate}
-            sortable
-          ></Column>
+          {dynamicColumns}
         </DataTable>
       </div>
     </div>
